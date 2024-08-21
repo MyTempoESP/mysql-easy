@@ -1,4 +1,4 @@
-module mysql_easy
+module github.com/mytempoesp/mysql_easy
 
 go 1.22.3
 
