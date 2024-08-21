@@ -1,4 +1,4 @@
-module mysql-easy
+module mysql_easy
 
 go 1.22.3
 
