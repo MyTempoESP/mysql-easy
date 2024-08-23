@@ -21,11 +21,12 @@ func ConfiguraDB() (db *sql.DB, err error) {
 	)
 
 	cfg := mysql.Config{
-		User:   os.Getenv("MYSQL_USER"),
-		Passwd: os.Getenv("MYSQL_PASS"),
-		Net:    "tcp",
-		Addr:   addr,
-		DBName: os.Getenv("MYSQL_DB"),
+		User:                 os.Getenv("MYSQL_USER"),
+		Passwd:               os.Getenv("MYSQL_PASS"),
+		Net:                  "tcp",
+		Addr:                 addr,
+		DBName:               os.Getenv("MYSQL_DB"),
+		AllowNativePasswords: true,
 	}
 
 	bf := backoff.NewExponentialBackOff()
