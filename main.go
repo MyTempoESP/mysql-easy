@@ -8,6 +8,10 @@ import (
 
 	"database/sql"
 
+	zerolog "github.com/rs/zerolog"
+	"github.com/simukti/sqldb-logger"
+	"github.com/simukti/sqldb-logger/logadapter/zerologadapter"
+
 	backoff "github.com/cenkalti/backoff"
 	mysql "github.com/go-sql-driver/mysql"
 )
@@ -39,6 +43,9 @@ func ConfiguraDB() (db *sql.DB, err error) {
 			if err != nil {
 				return
 			}
+
+			loggerAdapter := zerologadapter.New(zerolog.New(os.Stdout))
+			db = sqldblogger.OpenDriver(cfg.FormatDSN(), db.Driver(), loggerAdapter) // db is STILL *sql.DB
 
 			err = db.Ping()
 
